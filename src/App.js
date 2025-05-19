@@ -2,13 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 const OBJECTS = [
-  { name: "Stuffed Cat", volume: 300, color: "#2F3542", icon: "🐱" },
-  { name: "Toy Horse", volume: 250, color: "#2F3542", icon: "🐴" },
-  { name: "Soccer Ball", volume: 400, color: "#2F3542", icon: "⚽" },
-  { name: "Banana", volume: 150, color: "#2F3542", icon: "🍌" },
-  { name: "Cell Phone", volume: 120, color: "#2F3542", icon: "📱" },
-  { name: "Apple", volume: 180, color: "#2F3542", icon: "🍎" },
-  { name: "Shoe", volume: 350, color: "#2F3542", icon: "👟" },
+  { name: "Cat Figurine", volume: 300, color: "#2F3542", icon: "🐱" , image: "/images/cat.png" },
+  { name: "Nail", volume: 250, color: "#2F3542", icon: "🔨" , image: "/images/nail.png" },
+  { name: "Pen", volume: 150, color: "#2F3542", icon: "🖊️" , image: "/images/pen.png" },
+  { name: "Cell Phone", volume: 120, color: "#2F3542", icon: "📱", image: "/images/cell-phone.png" },
+  { name: "Apple", volume: 180, color: "#2F3542", icon: "🍎", image: "/images/apple.png" },
 ];
 
 const TANK_CAPACITY = 1000; // mL
@@ -31,6 +29,8 @@ function App() {
   const dropStartTime = useRef(null);
   const droppingObjectRef = useRef(null);
   const [resetBounce, setResetBounce] = useState(0);
+
+
 
   // Calculate water fill height in SVG
   const waterFillHeight = (animatedWaterLevel / TANK_CAPACITY) * TANK_HEIGHT;
@@ -197,33 +197,71 @@ function App() {
   // Render the object dropping or at rest
   const renderObjectInTank = () => {
     if (isDropping && pendingObject) {
-      return (
-        <text
-          x={TANK_WIDTH / 2}
-          y={dropY}
-          fontSize="32"
-          textAnchor="middle"
-          style={{ filter: "drop-shadow(0 2px 2px #fff)", pointerEvents: "none" }}
-        >
-          {pendingObject.icon}
-        </text>
-      );
+      if (pendingObject.image) {
+        return (
+          <image
+            x={TANK_WIDTH / 2 - 32}
+            y={dropY - 32}
+            width={64}
+            height={64}
+            href={pendingObject.image}
+            style={{
+              pointerEvents: "none",
+              opacity: 0.7
+            }}
+          />
+        );
+      } else {
+        return (
+          <text
+            x={TANK_WIDTH / 2}
+            y={dropY}
+            fontSize="32"
+            textAnchor="middle"
+            style={{ filter: "drop-shadow(0 2px 2px #fff)", pointerEvents: "none" }}
+          >
+            {pendingObject.icon}
+          </text>
+        );
+      }
     }
     if (droppedObject) {
-      return (
-        <text
-          x={TANK_WIDTH / 2}
-          y={getObjectTargetY()}
-          fontSize="32"
-          textAnchor="middle"
-          style={{ filter: "drop-shadow(0 2px 2px #fff)", pointerEvents: "none" }}
-        >
-          {droppedObject.icon}
-        </text>
-      );
+      if (droppedObject.image) {
+        return (
+          <image
+            x={TANK_WIDTH / 2 -32}
+            y={getObjectTargetY() - 32}
+            width={64}
+            height={64}
+            href={droppedObject.image}
+            style={{
+              pointerEvents: "none",
+              opacity: 0.5
+            }}
+          />
+        );
+      } else {
+        return (
+          <text
+            x={TANK_WIDTH / 2}
+            y={getObjectTargetY()}
+            fontSize="32"
+            textAnchor="middle"
+            style={{
+              filter: "drop-shadow(0 2px 2px #fff)",
+              pointerEvents: "none",
+              opacity: 0.5
+            }}
+          >
+            {droppedObject.icon}
+          </text>
+        );
+      }
     }
     return null;
   };
+
+  const allDisabled = !!droppedObject || isDropping;
 
   return (
     <div className="App">
@@ -362,6 +400,14 @@ function App() {
   {/* Measurement marks and object */}
   {marks}
   {renderObjectInTank()}
+  <rect
+    x={TANK_WIDTH / 2 - 20}
+    y={TANK_HEIGHT + waterFillHeight}
+    width={40}
+    height={waterFillHeight}
+    fill="url(#waterGradient)"
+    opacity={0.2}
+  />
 </svg>
             <div className="water-label">
               Water Level: <b>{waterLevel} mL</b>
@@ -378,27 +424,39 @@ function App() {
                       ? " disabled"
                       : ""
                   }`}
-           
                   style={{
                     background: obj.color,
                     opacity:
                       (droppedObject && droppedObject.name === obj.name) || isDropping
                         ? 0.4
-                        : 1,
-                    cursor: 'default'
+                        : allDisabled
+                          ? 0.4
+                          : 1,
+                    cursor: !allDisabled ? 'grab' : 'not-allowed'
                   }}
                   title={`Volume: ${obj.volume} mL`}
                 >
-                  <span 
-                    className="object-icon" 
-                    role="img" 
-                    aria-label={obj.name}
-                    draggable={!droppedObject && !isDropping}
-                    onDragStart={() => handleDragStart(obj)}
-                    onDragEnd={handleDragEnd}
-                    style={{ cursor: droppedObject || isDropping ? "not-allowed" : "grab" }}
-                  >
-                    {obj.icon}
+                  <span className="object-icon" role="img" aria-label={obj.name}>
+                    {obj.image ? (
+                      <img
+                        src={obj.image}
+                        alt={obj.name}
+                        style={{ width: 64, height: 64, objectFit: "contain" }}
+                        draggable={!allDisabled}
+                        onDragStart={() => handleDragStart(obj)}
+                        onDragEnd={handleDragEnd}
+                        style={{ cursor: !allDisabled ? "grab" : "not-allowed", width: 64, height: 64, objectFit: "contain" }}
+                      />
+                    ) : (
+                      <span
+                        draggable={!allDisabled}
+                        onDragStart={() => handleDragStart(obj)}
+                        onDragEnd={handleDragEnd}
+                        style={{ cursor: !allDisabled ? "grab" : "not-allowed" }}
+                      >
+                        {obj.icon}
+                      </span>
+                    )}
                   </span>
                   <span className="object-name">{obj.name}</span>
                 </div>
@@ -409,6 +467,7 @@ function App() {
         <button className="reset-btn" onClick={handleReset} disabled={isDropping}>
           Reset
         </button>
+
       </div>
     </div>
   );
