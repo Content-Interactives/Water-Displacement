@@ -26,15 +26,15 @@ h1 {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  background: #2F3542;
+  background: #E8EDF5;
   border-radius: 16px 16px 32px 32px;
   box-shadow: 0 8px 32px #bdbdbd44;
-  padding: 32px 32px 24px 32px;
+  padding: 32px 20px 24px 20px;
   margin-bottom: 16px;
 }
 
 .tank-area {
-  margin-right: 48px;
+  margin-right: 34px;
   padding: 16px 16px 0 16px;
   background: #CDCAF7;
   border-radius: 16px;
@@ -61,7 +61,7 @@ h1 {
 }
 
 .object-list {
-  min-width: 120px;
+  min-width: 80px;
   text-align: center;
 }
 
@@ -83,11 +83,11 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 4px;
-  background: #fff;
+  background: #E8EDF5;
   border-radius: 20px;
   padding: 2px 10px;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   padding: 0;
   box-shadow: 0 2px 8px #bdbdbd22;
   font-size: 1em;
@@ -106,7 +106,24 @@ h1 {
 .object-icon {
   font-size: 2em;
   margin: 0;
+  transition: transform 0.2s;
 }
+
+.object-icon:hover {
+  transform: scale(1.1);
+}
+
+.object-icon:active {
+  transform: scale(0.95);
+}
+
+.object-icon img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
 .object-name {
   color: #EEEDFC;
   flex: none;
@@ -120,27 +137,80 @@ h1 {
 }
 
 .reset-btn {
-  margin-top: 8px;
-  padding: 10px 32px;
-  font-size: 1.1em;
-  background: #5750E3;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px #b3e5fc44;
+  min-width: 160px; 
+  height: 60px; 
+  position: relative; 
+  border-radius: 16px; 
   cursor: pointer;
-  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: ProximaNova, Helvetica Neue, Arial, Helvetica, sans-serif;
+  color: #E8EDF5;
+  z-index: 1;
+  transition: all .3s ease;
 }
-.reset-btn:hover {
-  background: #3D389F;
+
+.reset-btn::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #E8EDF5;
+  inset: 2px;
+  border-radius: 14px;
+  z-index: -2;
+}
+
+.reset-btn::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #008545;
+  inset: 8px;
+  border-radius: 10px;
+  z-index: -1;
+  transition: all .3s ease;
+}
+
+.reset-btn:hover::after {
+  background: rgb(0, 174, 90);
+}
+
+.simple-glow {
+  background: conic-gradient(
+    from var(--r),
+    transparent 0%,
+    rgb(0, 255, 132) 2%,
+    rgb(0, 214, 111) 8%,
+    rgb(0, 174, 90) 12%,
+    rgb(0, 133, 69) 14%,
+    transparent 15%
+  );
+  animation: rotating 3s linear infinite;
+  transition: animation 0.3s ease;
+}
+
+.simple-glow:hover {
+  animation: rotating 1.5s linear infinite;
+}
+
+@keyframes rotating {
+  0% {
+    --r: 0deg;
+  }
+  100% {
+    --r: 360deg;
+  }
 }
 
 .instructions {
   margin: 0 auto;
   max-width: 420px;
-  background: #2F3542;
+  background: #E8EDF5;
   border-radius: 12px;
-  box-shadow: 0 2px 8px #bdbdbd22;
+  box-shadow: 0 2px 8px #E8EDF5;
   padding: 18px 24px 10px 24px;
   color: #66B68F;
   font-size: 1.08em;
@@ -154,3 +224,5 @@ h1 {
   margin: 0 0 0 10px;
   padding: 0;
 } 
+
+
