@@ -2,11 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 const OBJECTS = [
-  { name: "Cat Figurine", volume: 300, color: "#2F3542", icon: "🐱" , image: "/images/cat.png" },
-  { name: "Nail", volume: 250, color: "#2F3542", icon: "🔨" , image: "/images/nail.png" },
-  { name: "Pen", volume: 150, color: "#2F3542", icon: "🖊️" , image: "/images/pen.png" },
-  { name: "Cell Phone", volume: 120, color: "#2F3542", icon: "📱", image: "/images/cell-phone.png" },
-  { name: "Apple", volume: 180, color: "#2F3542", icon: "🍎", image: "/images/apple.png" },
+  { name: "Cat Figurine", volume: 300, color: "#2F3542", icon: "🐱" , image: `${process.env.PUBLIC_URL}/images/cat.png` },
+  { name: "Nail", volume: 250, color: "#2F3542", icon: "🔨" , image: `${process.env.PUBLIC_URL}/images/nail.png` },
+  { name: "Pen", volume: 150, color: "#2F3542", icon: "🖊️" , image: `${process.env.PUBLIC_URL}/images/pen.png` },
+  { name: "Cell Phone", volume: 120, color: "#2F3542", icon: "📱", image: `${process.env.PUBLIC_URL}/images/cell-phone.png` },
+  { name: "Apple", volume: 180, color: "#2F3542", icon: "🍎", image: `${process.env.PUBLIC_URL}/images/apple.png` },
 ];
 
 const TANK_CAPACITY = 1000; // mL
@@ -441,11 +441,15 @@ function App() {
                       <img
                         src={obj.image}
                         alt={obj.name}
-                        style={{ width: 64, height: 64, objectFit: "contain" }}
+                        style={{ 
+                          width: 64, 
+                          height: 64, 
+                          objectFit: "contain",
+                          cursor: !allDisabled ? "grab" : "not-allowed"
+                        }}
                         draggable={!allDisabled}
                         onDragStart={() => handleDragStart(obj)}
                         onDragEnd={handleDragEnd}
-                        style={{ cursor: !allDisabled ? "grab" : "not-allowed", width: 64, height: 64, objectFit: "contain" }}
                       />
                     ) : (
                       <span
