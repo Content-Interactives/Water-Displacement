@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Water Displacement Interactive
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the code for the **Water Displacement Interactive**, designed to help students explore and understand the concept of water displacement through engaging visuals and instant feedback.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔗 Live Interactive
 
-### `npm start`
+Try it out here:  
+👉 [https://content-interactives.github.io/Water-Displacement](https://content-interactives.github.io/Water-Displacement)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🌐 Where This Interactive Is Being Used
 
-### `npm test`
+This interactive is currently featured in the following locations:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- <img width="20" height="20" alt="image" src="https://github.com/user-attachments/assets/5d12571f-8e12-4441-98ab-c0bc94069a96" /> **CK-12 Intent Response**  
+  - 👉 PRODUCTION: [PENDING]  
+  - 👉 MASTER: [PENDING]
+- 📘 **CK-12 Flexbooks**  
+  - 👉 [PENDING: Book/lesson link where this interactive appears]
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📚 Standards & Subjects
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This interactive aligns with the following topics and standards:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **📂 Subject Area**: Middle School Science  
+- **🧪 Topic**: Water Displacement — Understanding the concept of water displacement through experiments and simulations  
+- **📏 Next Generation Science Standards (NGSS)**:  
+  - **MS-PS1-3** – Gather and make sense of information to describe that synthetic materials come from natural resources and impact society.  
+  - **MS-PS2-4** – Construct and present arguments using evidence to support the claim that gravitational interactions are attractive and depend on the masses of interacting objects and the distance between them.  
+  - **MS-PS2-5** – Conduct an investigation and evaluate the experimental design to provide evidence that fields exist between objects exerting forces on each other even though the objects are not in contact.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🛠️ Developer Notes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Built with: [PENDING]  
+- Deployed via: GitHub Pages  
+- See `index.html` and supporting assets in `src/` and `public/` folders
